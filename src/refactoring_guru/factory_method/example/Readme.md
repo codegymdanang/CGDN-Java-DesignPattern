@@ -18,7 +18,7 @@
 
 + Theo thiết kế ở trên thì HTML Button và Windows Button chính là 2 Concreat Class. Là 2 class sản phẩm được tạo ra từ abstract method createButton của HTML Dialog và Windows Dialog
 
-+ Abstract Dialog chính là Creator chứa method abstract và 1 phương thức 
++ Abstract Dialog chính là Creator chứa method abstract và 1 phương thức để gọi Abstract
 
 + HTML Dialog và Windows Dialog chính là 2 Concreat Creator . 2 class này sẽ kế thừa phương thức abstract class của lớp Abstract Dialog. 2 Class HTML Dialog và Windows Dialog kế thừa phương thức abstract createButton. Nhưng mỗi lớp sẽ cài đặt phương thức tạo ra button khác nhau. Kết quả của phương thức abstract sẽ sinh ra 1 đối tượng tương ứng. Ví dụ HTML Dialog thì sẽ tạo ra đối tượng HTML Button , còn Windows Dialog sẽ tạo ra Windows Button .
 
