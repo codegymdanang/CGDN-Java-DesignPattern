@@ -1,6 +1,6 @@
 ### Builder Pattern
 ### Khi nào nên dùng Builder
-We've all at some point encountered a class with a list of constructors where each addition adds a new option parameter:
+#### Object có nhiều constructor
 + Sẽ có những trường hợp ta lấy 1 Class có rất nhiều constructor khởi tạo đối tượng. Ví dụ như lớp Pizza Sau đây
 ```
 Pizza(int size) { ... }        
@@ -78,6 +78,7 @@ Pizza pizza = new Pizza.Builder(12)
                        .build();
 ```
 + Đoạn code ở trên rất dể viết va dể hiểu.
+#### Khi chúng ta muốn tạo object được cấu thành từ nhiều phần khác nhau. Khác với abstract factory chúng ta muốn build 1 bộ sản phẩm giống như xe Toyota gồm có lốp Toyota, phanh Toyota. ect Toyota. Thì Builder được sử dụng khi ta muốn build 1 sản phẩm từ nhiều bộ phận khác nhau như xe Toyota, phay Huynhdai , lốp Ferrary
 
 ### Builder UML
 ![builder](https://user-images.githubusercontent.com/37821007/63422351-64ccd600-c434-11e9-96a8-5145e9698d53.png)
