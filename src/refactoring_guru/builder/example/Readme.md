@@ -2,22 +2,25 @@
 ### Khi nào nên dùng Builder
 We've all at some point encountered a class with a list of constructors where each addition adds a new option parameter:
 + Sẽ có những trường hợp ta lấy 1 Class có rất nhiều constructor khởi tạo đối tượng. Ví dụ như lớp Pizza Sau đây
+```
 Pizza(int size) { ... }        
 Pizza(int size, boolean cheese) { ... }    
 Pizza(int size, boolean cheese, boolean pepperoni) { ... }    
 Pizza(int size, boolean cheese, boolean pepperoni, boolean bacon) { ... }
-This is called the Telescoping Constructor Pattern. The problem with this pattern is that once constructors are 4 or 5 parameters long it becomes difficult to remember the required order of the parameters as well as what particular constructor you might want in a given situation.
+```
++ 1 class có nhiều constructor với có nhiều parameter trong constructor sẽ gây khó khăn cho người lập trình để nhớ và sử dụng cái nào cho đúng. Cái này thì gọi là Telescoping Constructor
 
-One alternative you have to the Telescoping Constructor Pattern is the JavaBean Pattern where you call a constructor with the mandatory parameters and then call any optional setters after:
-
++ Có một cách để tránh Telescope là minh tạo tạo một object từ một constructor mặc định , sau đó dùng các hàm setter để set giá trị như ví dụ sau:
+```
 Pizza pizza = new Pizza(12);
 pizza.setCheese(true);
 pizza.setPepperoni(true);
 pizza.setBacon(true);
-The problem here is that because the object is created over several calls it may be in an inconsistent state partway through its construction. This also requires a lot of extra effort to ensure thread safety.
+```
++ Vấn đề trên có vấn đề ở chổ là Object được tạo ra qua quá nhiều bước setter 
++ Để giải quyết được vấn đề thì Builder Pattern sẽ là cách tốt nhất 
 
-The better alternative is to use the Builder Pattern.
-
+```
 public class Pizza {
   private int size;
   private boolean cheese;
@@ -64,7 +67,8 @@ public class Pizza {
     bacon = builder.bacon;
   }
 }
-Note that Pizza is immutable and that parameter values are all in a single location. Because the Builder's setter methods return the Builder object they are able to be chained.
+```
+
 
 Pizza pizza = new Pizza.Builder(12)
                        .cheese(true)
@@ -72,6 +76,7 @@ Pizza pizza = new Pizza.Builder(12)
                        .bacon(true)
                        .build();
 This results in code that is easy to write and very easy to read and understand. In this example, the build method could be modified to check parameters after they have been copied from the builder to the Pizza object and throw an IllegalStateException if an invalid parameter value has been supplied. This pattern is flexible and it is easy to add more parameters to it in the future. It is really only useful if you are going to have more than 4 or 5 parameters for a constructor. That said, it might be worthwhile in the first place if you suspect you may be adding more parameters in the future
+```
 
 ### Builder UML
 ![builder](https://user-images.githubusercontent.com/37821007/63422351-64ccd600-c434-11e9-96a8-5145e9698d53.png)
