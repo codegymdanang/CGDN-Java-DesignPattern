@@ -1,18 +1,15 @@
 ### Strategy Pattern
-The Strategy pattern is known as a behavioural pattern - it's used to manage algorithms, relationships and responsibilities between objects. The definition of Strategy provided in the original Gang of Four book on DesignPatterns states: 
+Chúng ta dùng Strategy Pattern để quản lý thuật toán , các mối quan hệ giữa các object trong ứng dụng
 
 ### Khi nào dùng Strategy
+Chúng ta sử dung Strategy khi chúng ta muốn chọn một thuật toán cho một đối tượng cụ thể lúc runtime (chương trình đang chạy). Ví dụ như thuật toán thanh toán cho khi mua hàng online trên mạng. Chúng ta có thể thanh toán bằng thẻ visa hay master. Thì khi chương trình mình dang chạy nếu người dùng chọn visa thì mình sẽ dùng thuật toán tính tiền của visa để thanh toán. Như vậy ta wrap các thuật toán , các business thành một đối tượng và sử dụng nó
 
-Where Would I Use This Pattern?
-The Strategy pattern is to be used where you want to choose the algorithm to use at runtime. A good use of the Strategy pattern would be saving files in different formats, running various sorting algorithms, or file compression.
-
-The Strategy pattern provides a way to define a family of algorithms, encapsulate each one as an object, and make them interchangeable.  
 
 ### UML
 
 ![general-strategy-pattern](https://user-images.githubusercontent.com/37821007/67373760-5b81f600-f5aa-11e9-9f75-4c0efed9450d.png)
 
-### Let's use the example of a file compression tool - where we create either zip or rar files. First we'll need a strategy
+### Vi dụ sau dây ta làm cho thuật toán nén file. Người dùng có thể nén bằng zip hoặc bằng rar 
 
 ```
 //Strategy Interface
