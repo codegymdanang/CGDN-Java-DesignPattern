@@ -27,6 +27,39 @@
 + Demo Application sẽ sử dụng Dialog để tuỳ vào hệ điều hành mà cho ra các sản phẩm dialog tương ứng (Win, Mac, Ubuntu). Demo Application chỉ dùng Abstract Dialog và không quan tâm các nút bấm được tạo ra như thế nào. Demo Application chỉ cần gọi  dialog.renderWindow() để tạo ra hộp thoại với nút bấm tương ứng với hệ điều hành
 
 + Ví dụ
+
+```
+public class Demo {
+    private static Dialog dialog;
+
+    public static void main(String[] args) {
+        configure();
+        runBusinessLogic();
+    }
+
+    /**
+     * The concrete factory is usually chosen depending on configuration or
+     * environment options.
+     */
+    static void configure() {
+        if (System.getProperty("os.name").equals("Windows 10")) {
+            dialog = new WindowsDialog();
+        } else {
+            dialog = new HtmlDialog();
+        }
+    }
+
+    /**
+     * All of the client code should work with factories and products through
+     * abstract interfaces. This way it does not care which factory it works
+     * with and what kind of product it returns.
+     */
+    static void runBusinessLogic() {
+        dialog.renderWindow();
+    }
+}
+```
+
 ```
 public abstract class Dialog {
 
@@ -42,5 +75,73 @@ public abstract class Dialog {
      * objects.
      */
     public abstract Button createButton();
+}
+```
+
+```
+/**
+ * Common interface for all buttons.
+ */
+public interface Button {
+    void render();
+    void onClick();
+}
+
+```
+
+```
+/**
+ * HTML button implementation.
+ */
+public class HtmlButton implements Button {
+
+    public void render() {
+        System.out.println("<button>Test Button</button>");
+        onClick();
+    }
+
+    public void onClick() {
+        System.out.println("Click! Button says - 'Hello World!'");
+    }
+}
+
+```
+
+```
+/**
+ * Windows button implementation.
+ */
+public class WindowsButton implements Button {
+    JPanel panel = new JPanel();
+    JFrame frame = new JFrame();
+    JButton button;
+
+    public void render() {
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JLabel label = new JLabel("Hello World!");
+        label.setOpaque(true);
+        label.setBackground(new Color(235, 233, 126));
+        label.setFont(new Font("Dialog", Font.BOLD, 44));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        frame.getContentPane().add(panel);
+        panel.add(label);
+        onClick();
+        panel.add(button);
+
+        frame.setSize(320, 200);
+        frame.setVisible(true);
+        onClick();
+    }
+
+    public void onClick() {
+        button = new JButton("Exit");
+        button.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
+                System.exit(0);
+            }
+        });
+    }
 }
 ```
