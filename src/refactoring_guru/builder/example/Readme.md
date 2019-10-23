@@ -85,3 +85,188 @@ Pizza pizza = new Pizza.Builder(12)
 
 
 ### Builder 
+```
+/**
+ * Builder interface defines all possible ways to configure a product.
+ */
+public interface Builder {
+    void setType(Type type);
+    void setSeats(int seats);
+    void setEngine(Engine engine);
+    void setTransmission(Transmission transmission);
+    void setTripComputer(TripComputer tripComputer);
+    void setGPSNavigator(GPSNavigator gpsNavigator);
+}
+
+```
+
+```
+/**
+ * Concrete builders implement steps defined in the common interface.
+ */
+public class CarBuilder implements Builder {
+    private Type type;
+    private int seats;
+    private Engine engine;
+    private Transmission transmission;
+    private TripComputer tripComputer;
+    private GPSNavigator gpsNavigator;
+
+    @Override
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    @Override
+    public void setSeats(int seats) {
+        this.seats = seats;
+    }
+
+    @Override
+    public void setEngine(Engine engine) {
+        this.engine = engine;
+    }
+
+    @Override
+    public void setTransmission(Transmission transmission) {
+        this.transmission = transmission;
+    }
+
+    @Override
+    public void setTripComputer(TripComputer tripComputer) {
+        this.tripComputer = tripComputer;
+    }
+
+    @Override
+    public void setGPSNavigator(GPSNavigator gpsNavigator) {
+        this.gpsNavigator = gpsNavigator;
+    }
+
+    public Car getResult() {
+        return new Car(type, seats, engine, transmission, tripComputer, gpsNavigator);
+    }
+}
+
+```
+
+```
+/**
+ * Unlike other creational patterns, Builder can construct unrelated products,
+ * which don't have the common interface.
+ *
+ * In this case we build a user manual for a car, using the same steps as we
+ * built a car. This allows to produce manuals for specific car models,
+ * configured with different features.
+ */
+public class CarManualBuilder implements Builder{
+    private Type type;
+    private int seats;
+    private Engine engine;
+    private Transmission transmission;
+    private TripComputer tripComputer;
+    private GPSNavigator gpsNavigator;
+
+    @Override
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    @Override
+    public void setSeats(int seats) {
+        this.seats = seats;
+    }
+
+    @Override
+    public void setEngine(Engine engine) {
+        this.engine = engine;
+    }
+
+    @Override
+    public void setTransmission(Transmission transmission) {
+        this.transmission = transmission;
+    }
+
+    @Override
+    public void setTripComputer(TripComputer tripComputer) {
+        this.tripComputer = tripComputer;
+    }
+
+    @Override
+    public void setGPSNavigator(GPSNavigator gpsNavigator) {
+        this.gpsNavigator = gpsNavigator;
+    }
+
+    public Manual getResult() {
+        return new Manual(type, seats, engine, transmission, tripComputer, gpsNavigator);
+    }
+}
+
+```
+
+```
+/**
+ * Director defines the order of building steps. It works with a builder object
+ * through common Builder interface. Therefore it may not know what product is
+ * being built.
+ */
+public class Director {
+
+    public void constructSportsCar(Builder builder) {
+        builder.setType(Type.SPORTS_CAR);
+        builder.setSeats(2);
+        builder.setEngine(new Engine(3.0, 0));
+        builder.setTransmission(Transmission.SEMI_AUTOMATIC);
+        builder.setTripComputer(new TripComputer());
+        builder.setGPSNavigator(new GPSNavigator());
+    }
+
+    public void constructCityCar(Builder builder) {
+        builder.setType(Type.CITY_CAR);
+        builder.setSeats(2);
+        builder.setEngine(new Engine(1.2, 0));
+        builder.setTransmission(Transmission.AUTOMATIC);
+        builder.setTripComputer(new TripComputer());
+        builder.setGPSNavigator(new GPSNavigator());
+    }
+
+    public void constructSUV(Builder builder) {
+        builder.setType(Type.SUV);
+        builder.setSeats(4);
+        builder.setEngine(new Engine(2.5, 0));
+        builder.setTransmission(Transmission.MANUAL);
+        builder.setGPSNavigator(new GPSNavigator());
+    }
+}
+```
+```
+/**
+ * Demo class. Everything comes together here.
+ */
+public class Demo {
+
+    public static void main(String[] args) {
+        Director director = new Director();
+
+        // Director gets the concrete builder object from the client
+        // (application code). That's because application knows better which
+        // builder to use to get a specific product.
+        CarBuilder builder = new CarBuilder();
+        director.constructSportsCar(builder);
+
+        // The final product is often retrieved from a builder object, since
+        // Director is not aware and not dependent on concrete builders and
+        // products.
+        Car car = builder.getResult();
+        System.out.println("Car built:\n" + car.getType());
+
+
+        CarManualBuilder manualBuilder = new CarManualBuilder();
+
+        // Director may know several building recipes.
+        director.constructSportsCar(manualBuilder);
+        Manual carManual = manualBuilder.getResult();
+        System.out.println("\nCar manual built:\n" + carManual.print());
+    }
+
+}
+```
