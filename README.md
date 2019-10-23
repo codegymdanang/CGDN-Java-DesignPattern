@@ -10,7 +10,10 @@
 2) Behavier (Chuyên cho việc 
 
 
-3) Các pattern đã xong
+3) Tham khảo 
++ https://dzone.com/refcardz/design-patterns?chapter=1
+
+4) Các pattern đã xong
 + abstract factory
 + factory method
 + builder
