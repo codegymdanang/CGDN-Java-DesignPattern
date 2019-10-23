@@ -26,4 +26,21 @@
 
 + Demo Application sẽ sử dụng Dialog để tuỳ vào hệ điều hành mà cho ra các sản phẩm dialog tương ứng (Win, Mac, Ubuntu). Demo Application chỉ dùng Abstract Dialog và không quan tâm các nút bấm được tạo ra như thế nào. Demo Application chỉ cần gọi  dialog.renderWindow() để tạo ra hộp thoại với nút bấm tương ứng với hệ điều hành
 
++ Vi
+```
+public abstract class Dialog {
 
+    public void renderWindow() {
+        // ... other code ...
+
+        Button okButton = createButton();
+        okButton.render();
+    }
+
+    /**
+     * Subclasses will override this method in order to create specific button
+     * objects.
+     */
+    public abstract Button createButton();
+}
+```
