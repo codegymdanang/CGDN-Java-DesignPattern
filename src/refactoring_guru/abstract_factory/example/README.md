@@ -159,3 +159,76 @@ public class WindowsCheckbox implements Checkbox {
     }
 }
 ```
+
+```
+/**
+ * Abstract Factory assumes that you have several families of products,
+ * structured into separate class hierarchies (Button/Checkbox). All products of
+ * the same family have the common interface.
+ *
+ * This is the common interface for buttons family.
+ */
+public interface Button {
+    void paint();
+}
+```
+
+```
+/**
+ * All products families have the same varieties (MacOS/Windows).
+ *
+ * This is a MacOS variant of a button.
+ */
+public class MacOSButton implements Button {
+
+    @Override
+    public void paint() {
+        System.out.println("You have created MacOSButton.");
+    }
+}
+```
+
+```
+/**
+ * All products families have the same varieties (MacOS/Windows).
+ *
+ * This is another variant of a button.
+ */
+public class WindowsButton implements Button {
+
+    @Override
+    public void paint() {
+        System.out.println("You have created WindowsButton.");
+    }
+}
+
+```
+
+```
+public class Demo {
+
+    /**
+     * Application picks the factory type and creates it in run time (usually at
+     * initialization stage), depending on the configuration or environment
+     * variables.
+     */
+    private static Application configureApplication() {
+        Application app;
+        GUIFactory factory;
+        String osName = System.getProperty("os.name").toLowerCase();
+        if (osName.contains("mac")) {
+            factory = new MacOSFactory();
+            app = new Application(factory);
+        } else {
+            factory = new WindowsFactory();
+            app = new Application(factory);
+        }
+        return app;
+    }
+
+    public static void main(String[] args) {
+        Application app = configureApplication();
+        app.paint();
+    }
+}
+```
