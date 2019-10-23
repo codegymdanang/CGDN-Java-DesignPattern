@@ -1,0 +1,2 @@
+### Khi nào dùng Strategy
+
