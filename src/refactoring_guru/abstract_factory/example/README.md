@@ -22,13 +22,40 @@
 + Windows Checkbox : là ProductB2 . Đây là lớp định nghĩa Windows checkbox  là gì
 + Mac Checkbox     : là Product B1 . Đây là lớp định nghĩa Mac checkbox  là gì
 + Application : Sử dụng Gui Factory và 2 lớp Interface Button và Interface Checkbox để tạo ra họ sản phẩm . Nếu windows thì button và checkbox Windows và ngược lại
+
 ```
-public interface GUIFactory {
-    Button createButton();
-    Checkbox createCheckbox();
+public class Demo {
+
+    /**
+     * Application picks the factory type and creates it in run time (usually at
+     * initialization stage), depending on the configuration or environment
+     * variables.
+     */
+    private static Application configureApplication() {
+        Application app;
+        GUIFactory factory;
+        String osName = System.getProperty("os.name").toLowerCase();
+        if (osName.contains("mac")) {
+            factory = new MacOSFactory();
+            app = new Application(factory);
+        } else {
+            factory = new WindowsFactory();
+            app = new Application(factory);
+        }
+        return app;
+    }
+
+    public static void main(String[] args) {
+        Application app = configureApplication();
+        app.paint();
+    }
 }
 ```
 ```
+/**
+ * Factory users don't care which concrete factory they use since they work with
+ * factories and products through abstract interfaces.
+ */
 public class Application {
     private Button button;
     private Checkbox checkbox;
@@ -45,12 +72,90 @@ public class Application {
 }
 ```
 ```
- String osName = System.getProperty("os.name").toLowerCase();
-        if (osName.contains("mac")) {
-            factory = new MacOSFactory();
-            app = new Application(factory);
-        } else {
-            factory = new WindowsFactory();
-            app = new Application(factory);
-        }
+/**
+ * Abstract factory knows about all (abstract) product types.
+ */
+public interface GUIFactory {
+    Button createButton();
+    Checkbox createCheckbox();
+}
+```
+
+```
+/**
+ * Each concrete factory extends basic factory and responsible for creating
+ * products of a single variety.
+ */
+public class MacOSFactory implements GUIFactory {
+
+    @Override
+    public Button createButton() {
+        return new MacOSButton();
+    }
+
+    @Override
+    public Checkbox createCheckbox() {
+        return new MacOSCheckbox();
+    }
+}
+```
+
+```
+/**
+ * Each concrete factory extends basic factory and responsible for creating
+ * products of a single variety.
+ */
+public class WindowsFactory implements GUIFactory {
+
+    @Override
+    public Button createButton() {
+        return new WindowsButton();
+    }
+
+    @Override
+    public Checkbox createCheckbox() {
+        return new WindowsCheckbox();
+    }
+}
+```
+
+```
+/**
+ * Checkboxes is the second product family. It has the same variants as buttons.
+ */
+public interface Checkbox {
+    void paint();
+}
+
+```
+
+```
+/**
+ * All products families have the same varieties (MacOS/Windows).
+ *
+ * This is a variant of a checkbox.
+ */
+public class MacOSCheckbox implements Checkbox {
+
+    @Override
+    public void paint() {
+        System.out.println("You have created MacOSCheckbox.");
+    }
+}
+
+```
+
+```
+/**
+ * All products families have the same varieties (MacOS/Windows).
+ *
+ * This is another variant of a checkbox.
+ */
+public class WindowsCheckbox implements Checkbox {
+
+    @Override
+    public void paint() {
+        System.out.println("You have created WindowsCheckbox.");
+    }
+}
 ```
