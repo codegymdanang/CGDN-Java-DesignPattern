@@ -1,7 +1,7 @@
 ### Builder Pattern
 ### Khi nào nên dùng Builder
 We've all at some point encountered a class with a list of constructors where each addition adds a new option parameter:
-
++ Sẽ có những trường hợp ta lấy 1 Class có rất nhiều constructor khởi tạo đối tượng. Ví dụ như lớp Pizza Sau đây
 Pizza(int size) { ... }        
 Pizza(int size, boolean cheese) { ... }    
 Pizza(int size, boolean cheese, boolean pepperoni) { ... }    
