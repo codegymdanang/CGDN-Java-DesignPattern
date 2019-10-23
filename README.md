@@ -2,12 +2,55 @@
 
 ### Design Pattern là gì 
 
-## Các design pattern được chia ra thành 3 nhóm
-1) Creation (chuyên cho việc tạo đối tượng). Khi nào mình cần tạo đối tượng mình có thể sử dụng 1 trong các pattern sau. Mỗi pattern phục vụ cho những mục đích khác nhau
-  + Factory Method
-  + Abstract Factory
-  + Builder
-2) Behavier (Chuyên cho việc 
+## Các design pattern được chia ra thành 3 nhóm Creation , Behavier , và Structural
+
+► Chain Of Responsibility Object Behavioral
+
+► Command Object Behavioral
+
+► Interpreter Class Behavioral
+
+► Iterator Object Behavioral
+
+► Mediator Object Behavioral
+
+► Memento Object Behavioral
+
+► Observer Object Behavioral
+
+► State Object Behavioral
+
+► Strategy Object Behavioral
+
+► Template Method Class Behavioral
+
+► Visitor Object Behavioral
+
+► Adapter Class and Object Structural
+
+► Bridge Object Structural
+
+► Composite Object Structural
+
+► Decorator Object Structural
+
+► Facade Object Structural
+
+► Fly Weight Object Structural
+
+► Proxy Object Structural
+
+► Abstract Factory Object Creational
+
+► Builder Object Creational
+
+► Factory Method Object Creational
+
+► Prototype Object Creational
+
+► Singleton Object Creational
+
+
 
 
 3) Tham khảo 
