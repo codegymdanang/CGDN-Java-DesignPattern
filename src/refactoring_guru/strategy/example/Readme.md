@@ -10,6 +10,8 @@ The Strategy pattern provides a way to define a family of algorithms, encapsulat
 
 ### UML
 
+![general-strategy-pattern](https://user-images.githubusercontent.com/37821007/67373760-5b81f600-f5aa-11e9-9f75-4c0efed9450d.png)
+
 ### Let's use the example of a file compression tool - where we create either zip or rar files. First we'll need a strategy
 
 ```
