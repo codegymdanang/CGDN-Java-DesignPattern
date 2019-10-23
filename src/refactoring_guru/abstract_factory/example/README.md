@@ -22,3 +22,35 @@
 + Windows Checkbox : là ProductB2 . Đây là lớp định nghĩa Windows checkbox  là gì
 + Mac Checkbox     : là Product B1 . Đây là lớp định nghĩa Mac checkbox  là gì
 + Application : Sử dụng Gui Factory và 2 lớp Interface Button và Interface Checkbox để tạo ra họ sản phẩm . Nếu windows thì button và checkbox Windows và ngược lại
+```
+public interface GUIFactory {
+    Button createButton();
+    Checkbox createCheckbox();
+}
+```
+```
+public class Application {
+    private Button button;
+    private Checkbox checkbox;
+
+    public Application(GUIFactory factory) {
+        button = factory.createButton();
+        checkbox = factory.createCheckbox();
+    }
+
+    public void paint() {
+        button.paint();
+        checkbox.paint();
+    }
+}
+```
+```
+ String osName = System.getProperty("os.name").toLowerCase();
+        if (osName.contains("mac")) {
+            factory = new MacOSFactory();
+            app = new Application(factory);
+        } else {
+            factory = new WindowsFactory();
+            app = new Application(factory);
+        }
+```
