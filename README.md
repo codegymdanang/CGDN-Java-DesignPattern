@@ -8,3 +8,12 @@
   + Abstract Factory
   + Builder
 2) Behavier (Chuyên cho việc 
+
+
+3) Các pattern đã xong
++ abstract factory
++ factory method
++ builder
+
+
++ Strategy
