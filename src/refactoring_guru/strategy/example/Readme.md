@@ -8,6 +8,8 @@ The Strategy pattern is to be used where you want to choose the algorithm to use
 
 The Strategy pattern provides a way to define a family of algorithms, encapsulate each one as an object, and make them interchangeable.  
 
+### UML
+
 ### Let's use the example of a file compression tool - where we create either zip or rar files. First we'll need a strategy
 
 ```
