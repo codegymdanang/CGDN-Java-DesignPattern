@@ -69,14 +69,15 @@ public class Pizza {
 }
 ```
 
-
++ Bây giờ chúng ta dùng builder để tránh việc setter quá nhiều 
+```
 Pizza pizza = new Pizza.Builder(12)
                        .cheese(true)
                        .pepperoni(true)
                        .bacon(true)
                        .build();
-This results in code that is easy to write and very easy to read and understand. In this example, the build method could be modified to check parameters after they have been copied from the builder to the Pizza object and throw an IllegalStateException if an invalid parameter value has been supplied. This pattern is flexible and it is easy to add more parameters to it in the future. It is really only useful if you are going to have more than 4 or 5 parameters for a constructor. That said, it might be worthwhile in the first place if you suspect you may be adding more parameters in the future
 ```
++ Đoạn code ở trên rất dể viết va dể hiểu.
 
 ### Builder UML
 ![builder](https://user-images.githubusercontent.com/37821007/63422351-64ccd600-c434-11e9-96a8-5145e9698d53.png)
