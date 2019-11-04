@@ -1,8 +1,15 @@
 ### Trong bài viết hôm nay a sẽ giới thiệu các design pattern mà mình hay dùng trong phát triển phần mềm
 
-### Design Pattern là gì 
+## Design Pattern là gì 
+
+
+
 
 ## Các design pattern được chia ra thành 3 nhóm Creation , Behavier , và Structural
++ Creational Patterns: Used to construct objects such that they can be decoupled from their implementing system.
++ Structural Patterns: Used to form large object structures between many disparate objects.
++ Behavioral Patterns: Used to manage algorithms, relationships, and responsibilities between objects.
+
 # Behavioral 
 ► Chain Of Responsibility Object Behavioral
 
@@ -56,13 +63,11 @@
 ► Singleton Object Creational
 
 
-3) Tham khảo 
+# Tham khảo 
 + https://dzone.com/refcardz/design-patterns?chapter=1
 
-4) Các pattern đã xong
+# Các pattern đã xong
 + abstract factory
 + factory method
 + builder
-
-
 + Strategy
