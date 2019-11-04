@@ -3,7 +3,7 @@
 ### Design Pattern là gì 
 
 ## Các design pattern được chia ra thành 3 nhóm Creation , Behavier , và Structural
-
+# Behavioral 
 ► Chain Of Responsibility Object Behavioral
 
 ► Command Object Behavioral
@@ -26,6 +26,8 @@
 
 ► Visitor Object Behavioral
 
+# Structural
+
 ► Adapter Class and Object Structural
 
 ► Bridge Object Structural
@@ -40,6 +42,9 @@
 
 ► Proxy Object Structural
 
+
+# Creational
+
 ► Abstract Factory Object Creational
 
 ► Builder Object Creational
@@ -49,8 +54,6 @@
 ► Prototype Object Creational
 
 ► Singleton Object Creational
-
-
 
 
 3) Tham khảo 
