@@ -62,6 +62,7 @@
 
 ► Singleton Object Creational
 
+<img width="512" alt="Screen Shot 2019-11-04 at 7 45 34 PM" src="https://user-images.githubusercontent.com/37821007/68121943-c2ed5d80-ff3b-11e9-9b4a-7f4ea2761867.png">
 
 # Tham khảo 
 + https://dzone.com/refcardz/design-patterns?chapter=1
